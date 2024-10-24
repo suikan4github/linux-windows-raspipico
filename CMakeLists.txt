@@ -23,19 +23,24 @@ if( ${FOUNDPOS} GREATER "-1") # If yes, it is pico
     # pico_sdk_import.cmake is a single file copied from this SDK
     # note: this must happen before project()
     include(pico_sdk_import.cmake)
-    
-    project("app")
+
 
     # initialize the Raspberry Pi Pico SDK
     pico_sdk_init()
 else() # WIN32 or Unix
     message(STATUS "Target is Windows or Linux")
-    project("app")
 
     # Unit test. 
     add_subdirectory("test")
 
 endif() # string(FIND CMAKE_CXX_COMPILER "arm-none-eabi") GREATER_EQUAL 0 
+
+# Pico SDK requires the project name must be set after
+# including pico_sdk_import.cmake. On the other hand, CMake
+# requires to set the project name at the toplevel. 
+# So, we delcare here.  
+project("app")
+
 
 # Subdirectories
 add_subdirectory("src")
