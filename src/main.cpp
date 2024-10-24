@@ -8,7 +8,13 @@
  * @copyright Copyright (c) 2022
  *
  */
-#include <iostream>
+#if __has_include(<hardware/gpio.h>)
+#include <pico/stdlib.h>
+#else
+#include <stdlib.h>
+#endif
+
+#include <stdio.h>
 
 #include "calc.hpp"
 
@@ -22,8 +28,7 @@ int main() {
 
   // count from 1 to num
   for (int i = 1; i <= 10; i++)
-    std::cout << "[CalcSqrt] The square root of " << i << " is " << calc.sqrt(i)
-              << std::endl;
+    printf("[CalcSqrt] The square root of %d is %f \n", i, calc.sqrt(i));
 
   return 0;
 }

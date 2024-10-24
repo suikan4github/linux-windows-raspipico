@@ -1,30 +1,42 @@
 # CMake 3.15 or newer is requried because of CMP0091.
 cmake_minimum_required(VERSION "3.15")
 
-# The CMake compatibility flag for MSVC runtime library flag. New in 3.15.  Must set "NEW"
-cmake_policy(SET CMP0091 "NEW")   
-# Enforce the  /MT or /MTd as link option for MS Visual Studio C++
-set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-
-
-#----------------------------------------------------------------------------
-# Parameters inside project
-project("app")
 
 # Compiler option
 # GoogleTest requirest C++11 or later
-set(CMAKE_CXX_STANDARD "11")
+set(CMAKE_CXX_STANDARD "17")
 set(CMAKE_CXX_STANDARD_REQUIRED "ON")
-set(CMAKE_CXX_EXTENSIONS "OFF")
 
+# In the toplevel CMakeLists.txt, we can not use the
+# $WIN or $Unix. To avoid this problem, we check the 
+# Compile path string. If it contains arm-none-eabi, 
+# We guess this is bare metal target. 
 
-#----------------------------------------------------------------------------
-# Do not edit the lines below 
+# Is compiler arm-none-eabi? 
+string(FIND ${CMAKE_CXX_COMPILER} "arm-none-eabi" FOUNDPOS)
+if( ${FOUNDPOS} GREATER "-1") # If yes, it is pico
+    message(STATUS "Target is bare metal")
+    # obtain pico-sdk from GIT
+    # (note this can come from environment, CMake cache etc)
+    set(PICO_SDK_FETCH_FROM_GIT on)
 
-# Executable name
-set(EXECUTABLE_NAME ${PROJECT_NAME})
+    # pico_sdk_import.cmake is a single file copied from this SDK
+    # note: this must happen before project()
+    include(pico_sdk_import.cmake)
+    
+    project("app")
+
+    # initialize the Raspberry Pi Pico SDK
+    pico_sdk_init()
+else() # WIN32 or Unix
+    message(STATUS "Target is Windows or Linux")
+    project("app")
+
+    # Unit test. 
+    add_subdirectory("test")
+
+endif() # string(FIND CMAKE_CXX_COMPILER "arm-none-eabi") GREATER_EQUAL 0 
 
 # Subdirectories
 add_subdirectory("src")
-add_subdirectory("test")
 
