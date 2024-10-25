@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2022
  *
  */
-#if __has_include(<hardware/gpio.h>)
+#if __has_include(<hardware/stdlib.h>)
 #include <pico/stdlib.h>
 #else
 #include <stdlib.h>
@@ -25,6 +25,10 @@
  */
 int main() {
   Calc calc;
+
+#if __has_include(<hardware/stdlib.h>)
+  stdio_init_all();
+#endif
 
   // count from 1 to num
   for (int i = 1; i <= 10; i++)
