@@ -1,6 +1,8 @@
-# template_application
-A template application for C++ with CMake and GoogleTest
+# Linux / Windows / Raspberry Pi Pico compatible application
+This is a template project which can run on Linux, Windows and Raspberry Pi Pico. 
 ## Description
+
+
 A CMake file template and sample C++ application which allows unit test by GoogleTest. This template application is :
 - Able to collaborate with [Visual Studio CODE](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) editor.
 - Build in [GoogleTest](https://github.com/google/googletest) which is downloaded automatically.
@@ -9,15 +11,17 @@ A CMake file template and sample C++ application which allows unit test by Googl
 - std::thread aware. 
 - Generate Gcov data files during test ( except Windows platform )
 - Tested: 
-    - Ubuntu 20.04  with GCC.
-    - Windows 11 with Visual Studio C++ compiler.
-    - WSL2 with VS CODE remote server.
+    - Ubuntu 24.04  with GCC.
 - Automatically tested by GitHub Actions.
-    - linux-latest, Debug (With gcovr report)
-    - linux-latest, Release
-    - windows-latest, Debug
-    - windows-latest, Release
-    
+    - Ubuntu Latest with GCC.
+    - Ubuntu Latest with Clang.
+    - Windows Latest with MSVC 32bit.
+    - Windows Latest with MSVC 64bit.
+
+
+
+
+
 ## Screenshot
 ![](image/screenshot.png)
 ## Requirement
