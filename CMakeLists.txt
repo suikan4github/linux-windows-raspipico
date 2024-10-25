@@ -39,6 +39,7 @@ if( ${FOUNDPOS} LESS "0") # If yes, it is Windows or Linux
     message(STATUS "Target is Windows or Linux")
 
     # Unit test. 
+    enable_testing()
     add_subdirectory("test")
 
 endif() # string(FIND CMAKE_CXX_COMPILER "arm-none-eabi") GREATER_EQUAL 0 
