@@ -27,12 +27,6 @@ if( ${FOUNDPOS} GREATER "-1") # If yes, it is pico
 
     # initialize the Raspberry Pi Pico SDK
     pico_sdk_init()
-else() # WIN32 or Unix
-    message(STATUS "Target is Windows or Linux")
-
-    # Unit test. 
-    add_subdirectory("test")
-
 endif() # string(FIND CMAKE_CXX_COMPILER "arm-none-eabi") GREATER_EQUAL 0 
 
 # Pico SDK requires the project name must be set after
@@ -40,6 +34,14 @@ endif() # string(FIND CMAKE_CXX_COMPILER "arm-none-eabi") GREATER_EQUAL 0
 # requires to set the project name at the toplevel. 
 # So, we delcare here.  
 project("app")
+
+if( ${FOUNDPOS} LESS "0") # If yes, it is Windows or Linux
+    message(STATUS "Target is Windows or Linux")
+
+    # Unit test. 
+    add_subdirectory("test")
+
+endif() # string(FIND CMAKE_CXX_COMPILER "arm-none-eabi") GREATER_EQUAL 0 
 
 
 # Subdirectories
