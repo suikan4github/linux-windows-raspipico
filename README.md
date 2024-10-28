@@ -17,7 +17,7 @@ A CMake file template and sample C++ application which allows unit test by Googl
     - Ubuntu Latest with Clang.
     - Windows Latest with MSVC 32bit.
     - Windows Latest with MSVC 64bit.
-
+- Make coverage report and publish it to [Coveralls](https://coveralls.io/github/suikan4github/linux-windows-raspipico). 
 
 ## Requirement
 ### Ubuntu
@@ -78,12 +78,15 @@ cmake -B build -S . -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/arm-none-eabi-gcc \
 -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/arm-none-eabi-g++
 cmake --build .
 ```
+## Switching the target
+To switch the target, make sure to remove the build directory. 
 
+And then, execute the configuration from the command line. Or, on the VS Code, use CMake Extension to change the compiler. By changing compile, the CMake configure the appropriate target whichever it is Unix, Windows or bare metal. 
 
 ## Install
  
 ### Ubuntu
-Run followings on the shell to install the esseintal tools. 
+Run followings on the shell to install the essential tools. 
 ```Shell
 apt-get -y update
 apt-get -y install build-essential cmake ninja-build git 
