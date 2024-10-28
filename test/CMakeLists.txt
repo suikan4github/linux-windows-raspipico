@@ -1,14 +1,9 @@
-#----------------------------------------------------------------------------
-# Do not edit lines below
+
 
 # GCOV settings
 set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} --coverage") 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage") 
 
-# List up all source files including main.cpp
-set(MAIN_FILE_PATTERN ".*/main.cpp$")
-file(GLOB LIB_SRC "${CMAKE_CURRENT_SOURCE_DIR}/../src/*.cpp")
-list(FILTER LIB_SRC EXCLUDE REGEX ${MAIN_FILE_PATTERN})    # Filter out the main file
 
 # List all test file in this directory
 file(GLOB TEST_SRC "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
@@ -17,24 +12,13 @@ file(GLOB TEST_SRC "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 set(TEST_EXECUTABLE_NAME test_${PROJECT_NAME})
 
 # Add the executable for the testcase which is using googletest
-add_executable(${TEST_EXECUTABLE_NAME} ${TEST_SRC} ${LIB_SRC})
+add_executable(${TEST_EXECUTABLE_NAME} ${TEST_SRC})
 
     # Add the library under test.
     target_link_libraries(${TEST_EXECUTABLE_NAME}  
                             "gtest_main"
+                            lib
                             )
-    # Add the include directory for test executable.
-    target_include_directories(${TEST_EXECUTABLE_NAME}
-                                PUBLIC
-                                "${CMAKE_CURRENT_SOURCE_DIR}/../src"
-                                )
-    if(MSVC)
-        target_compile_options(${TEST_EXECUTABLE_NAME} PRIVATE /W4 )
-    else()
-        target_compile_options(${TEST_EXECUTABLE_NAME} PRIVATE -Wall -Wextra -pedantic )
-    endif()
-                        
-
 
 # Find and integrate the Google Test package
 
@@ -54,6 +38,14 @@ FetchContent_MakeAvailable("googletest")
 
 # Include the GoogleTest
 include("GoogleTest")
+
+# Enable CTest
+# This command automatically run the enable_test() command.
+# And the CMake specification requires to place the enable_test() at the
+# root of the project, to run the ctest correctly. 
+# Thus, place this command at the root of project.
+include("CTest")
+
 
 # Search test cases and link 
 # New in CMake 3.10

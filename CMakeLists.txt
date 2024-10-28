@@ -1,49 +1,50 @@
 # CMake 3.15 or newer is requried because of CMP0091.
 cmake_minimum_required(VERSION "3.15")
 
-# The CMake compatibility flag for MSVC runtime library flag. New in 3.15.  Must set "NEW"
-cmake_policy(SET CMP0091 "NEW")   
-# Enforce the  /MT or /MTd as link option for MS Visual Studio C++
-set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-
-
-#----------------------------------------------------------------------------
-# Parameters inside project
-project("template_application")
 
 # Compiler option
 # GoogleTest requirest C++11 or later
-set(CMAKE_CXX_STANDARD "11")
+set(CMAKE_CXX_STANDARD "17")
 set(CMAKE_CXX_STANDARD_REQUIRED "ON")
-set(CMAKE_CXX_EXTENSIONS "OFF")
+
+# In the toplevel CMakeLists.txt, we can not use the
+# $WIN or $Unix. To avoid this problem, we check the 
+# Compile path string. If it contains arm-none-eabi, 
+# We guess this is bare metal target. 
+
+# Is compiler arm-none-eabi? 
+string(FIND ${CMAKE_CXX_COMPILER} "arm-none-eabi" FOUNDPOS)
+if( ${FOUNDPOS} GREATER "-1") # If yes, it is pico
+    message(STATUS "Target is bare metal")
+    # obtain pico-sdk from GIT
+    # (note this can come from environment, CMake cache etc)
+    set(PICO_SDK_FETCH_FROM_GIT on)
+
+    # pico_sdk_import.cmake is a single file copied from this SDK
+    # note: this must happen before project()
+    include(pico_sdk_import.cmake)
 
 
-#----------------------------------------------------------------------------
-# Do not edit the lines below 
+    # initialize the Raspberry Pi Pico SDK
+    pico_sdk_init()
+endif() # string(FIND CMAKE_CXX_COMPILER "arm-none-eabi") GREATER_EQUAL 0 
 
-# Executable name
-set(EXECUTABLE_NAME ${PROJECT_NAME})
+# Pico SDK requires the project name must be set after
+# including pico_sdk_import.cmake. On the other hand, CMake
+# requires to set the project name at the toplevel. 
+# So, we delcare here.  
+project("app")
 
-# Test executable and library name
-set(TEST_EXECUTABLE_NAME "test_${PROJECT_NAME}")
-set(TEST_LIBRARY_NAME "${PROJECT_NAME}_for_test")
+if( ${FOUNDPOS} LESS "0") # If yes, it is Windows or Linux
+    message(STATUS "Target is Windows or Linux")
 
-# Enable CTest
-# This command automatically run the enable_test() command.
-# And the CMake specification requires to place the enable_test() at the
-# root of the project, to run the ctest correctly. 
-# Thus, place this command at the root of project.
-include("CTest")
+    # Unit test. 
+    enable_testing()
+    add_subdirectory("test")
 
-# Using thread inside application
-find_package("Threads" REQUIRED)
+endif() # string(FIND CMAKE_CXX_COMPILER "arm-none-eabi") GREATER_EQUAL 0 
 
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include("CPack")
 
 # Subdirectories
 add_subdirectory("src")
-add_subdirectory("test")
-add_subdirectory("doc")
 
