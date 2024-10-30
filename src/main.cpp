@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2022
  *
  */
-#if __has_include(<hardware/stdlib.h>)
+#if __has_include(<pico/stdlib.h>)
 #include <pico/stdlib.h>
 #else
 #include <stdlib.h>
@@ -26,7 +26,7 @@
 int main() {
   Calc calc;
 
-#if __has_include(<hardware/stdlib.h>)
+#if __has_include(<pico/stdlib.h>)
   stdio_init_all();
 #endif
 
