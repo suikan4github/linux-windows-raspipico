@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 ### Fixed
 [Issue #2](https://github.com/suikan4github/linux-windows-raspipico/issues/2) __has_include must be changed to pico/stdlib.h 
+[Issue #4](https://github.com/suikan4github/linux-windows-raspipico/issues/4) Doxyfile needs to update. 
 
 ## [v1.0.0] - 2024-10-28
 - Initial release of project.
