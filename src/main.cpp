@@ -1,12 +1,11 @@
 /**
  * @file main.cpp
- * @author your name (you@domain.com)
- * @brief
+ * @author Seiichi Horie
+ * @brief Pico/Win-Unix Bi-modal program.
  * @version 0.1
- * @date 2022-01-22
+ * @date 2024-Oct-31
  *
- * @copyright Copyright (c) 2022
- *
+ * @copyright (c) Seiichi Horie 2024
  */
 #if __has_include(<pico/stdlib.h>)
 #include <pico/stdlib.h>
@@ -46,9 +45,12 @@ int main() {
   }
 #endif
 
-  // count from 1 to num
-  for (int i = 1; i <= 10; i++)
-    printf("[CalcSqrt] The square root of %d is %f \n", i, calc.sqrt(i));
+  // Write user code here.
+  {
+    // count from 1 to num
+    for (int i = 1; i <= 10; i++)
+      printf("[CalcSqrt] The square root of %d is %f \n", i, calc.sqrt(i));
+  }
 
 #if __has_include(<pico/stdlib.h>)  // Is target pico/Pico2?
   // tell user we have finished.
