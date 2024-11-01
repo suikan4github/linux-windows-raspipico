@@ -28,27 +28,24 @@ Finally, click the "Build" button in the status bar.
 ![](../image/statusbar.png)
 
 
-## How to run the application
-
-### CLI
+## How to run the application from CLI
 From the command line, run the following command :
 ```sh
 build/src/app
 ```
 
-### VS Code
+## How to run the application from VS Code
 From the VS Code, click the run (▷) button to run the program. 
 
 ![](../image/statusbar.png)
 
 
-## How to run the test
-### CLI
+## How to run the test from CLI
 From the command line, run the following command :
 ```sh
 ctest --test-dir build
 ```
-### VS Code
+## How to run the test from VS Code
 From the VS Code, click the Test extension, and then run. 
 
 ![](../image/test.png)
