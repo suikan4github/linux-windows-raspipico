@@ -26,7 +26,8 @@ cmake -B build -S . \
 cmake --build build --target all
 ```
 
-Refer the following tables as a details of the appropriate macro values. Refer [Raspberry Pi Pico SDK](https://github.com/raspberrypi/pico-sdk?tab=readme-ov-file#unix-command-line) for more information. 
+Refer the following tables as a details of the appropriate macro values. 
+Refer [Raspberry Pi Pico SDK](https://github.com/raspberrypi/pico-sdk?tab=readme-ov-file#unix-command-line) for more information. 
 
 |Macro          | RasPi Pico | RasPi Pico W | RasPi Pico2 |
 |----           |--------     |--------     |------- |
