@@ -5,8 +5,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
-
 ## [Unreleased] - YYYY-MM-DD
+### Added
+### Changed
+### Fixed
+
+
+## [Unreleased] - 2024/11/04
+Bugfix update.
+
+- Fixed bare-metal/WinLin detection problem in the program. 
+- Other small modifications in project. 
+
 ### Added
 [Issue #3](https://github.com/suikan4github/linux-windows-raspipico/issues/3) Add count down to the main().  
 ### Changed
@@ -21,5 +31,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 ### Fixed
 
-[Unreleased]: https://github.com/suikan4github/template_application/compare/v1.0.0...develop
+[Unreleased]: https://github.com/suikan4github/template_application/compare/v1.0.1...develop
+[v1.0.1]: https://github.com/suikan4github/template_application/compare/v1.0.0...v1.0.1
 [v1.0.0]: https://github.com/suikan4github/template_application/compare/v0.0.0...v1.0.0
