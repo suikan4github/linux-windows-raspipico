@@ -1,6 +1,6 @@
 # Building for the Windows target
 
-In this file, we explain how to build your code for the Linux target. 
+In this file, we explain how to build your code for the Windows target. 
 
 We see one way to build 
 - CLI ( Command Line Interface )

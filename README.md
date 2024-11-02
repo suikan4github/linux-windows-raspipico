@@ -21,26 +21,29 @@ This template application is :
     - Windows Latest with MSVC 64bit.
 - Make coverage report and publish it to [Coveralls](https://coveralls.io/github/suikan4github/linux-windows-raspipico). 
 
-## Requirement
+## Tested environment / Target
 ### Ubuntu
-- Ubuntu 24.04
-- VS Code
-- CMake 3.15 or newer
-- g++
-- gcc-arm-eabi-none, libnewlib-arm-none-eabi 
+- Kubuntu 24.10
+- VS Code 1.94.2
+- CMake 
+- g++ 
 
 ### Windows
-- Windows 10 or 11
-- VS Code
-- CMake 3.15 or newer
-- Microsoft Visual C++ compiler 
+- Windows 11
+- VS Code 1.94.2
+- CMake 3.28.3
+- Visual Studio Build Tools 2022 17.11.3
 
 ### WSL2
-- Windows 10 or 11
+- Windows 11 / Ubuntu 24.04
 - CMake 3.15 or newer
-- g++
-- gcc-arm-eabi-none, libnewlib-arm-none-eabi 
+- g++ 13.2.0
 
+### Raspberry Pi Pico
+- Windows 11 / Ubuntu 24.04 (WSL)
+- VS Code 1.94.2
+- CMake 3.28.3
+- gcc-arm-eabi-none 13.2.1
 
 ## Prerequisite  
  
