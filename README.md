@@ -56,6 +56,9 @@ apt-get -y install doxygen graphviz
 
 - Refer [BAREMETAL.md](docs/BAREMETAL.md) for the Raspberry Pi Pico target. 
 - Refer [LINUX.md](docs/LINUX.md) for the Linux target.
+- Refer [WINDOWS.md](docs/WINDOWS.md) for the Windows target.
+
+As of 2024/Nov, Windows target is unable to configure from VS Code. Our recommendation is WSL, instead of Windows native as a development environment. 
 
 ## License
-This project is shared with the [MIT License](LICENSE). 
+This project is shared under the [MIT License](LICENSE). 
