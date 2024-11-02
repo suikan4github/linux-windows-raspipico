@@ -63,5 +63,8 @@ apt-get -y install doxygen graphviz
 
 As of 2024/Nov, Windows target is unable to configure from VS Code. Our recommendation is WSL, instead of Windows native as a development environment. 
 
+## Known issues
+- As of 2024/Nov, we cannot configure this project on the VS Code for Windows.  
+
 ## License
 This project is shared under the [MIT License](LICENSE). 
