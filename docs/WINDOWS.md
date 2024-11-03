@@ -15,8 +15,6 @@ cmake --build build --target all
 
 ## Configuration and building on VS Code
 
-As of 2024/Nov, we cannot configure this project on the VS Code. 
-
 Once configuration is done from CLI, we can build the project from GUI. 
 Click the "Build" button in the status bar. 
 
