@@ -2,16 +2,18 @@
 This is a template project which can run on Linux, Windows and Raspberry Pi Pico. 
 ## Description
 
+A set of CMake files template and sample C++ application which can run on Linux, Windows and Raspberry Pi Pico. 
+This sample also allows unit test by GoogleTest. 
 
-A CMake file template and sample C++ application which allows unit test by GoogleTest. This template application is :
+This template application is :
 - Able to collaborate with [Visual Studio CODE](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) editor.
 - Build in [GoogleTest](https://github.com/google/googletest) which is downloaded automatically.
 - "src" directory for application source code.
 - "test" directory for unit tests. 
-- std::thread aware. 
 - Generate Gcov data files during test ( except Windows platform )
 - Tested: 
-    - Ubuntu 24.04  with GCC.
+    - Ubuntu 24.04 with gcc.
+    - Ubuntu 24.04 with gcc-arm-none-eabi
 - Automatically tested by GitHub Actions.
     - Ubuntu Latest with GCC.
     - Ubuntu Latest with Clang.
@@ -19,74 +21,33 @@ A CMake file template and sample C++ application which allows unit test by Googl
     - Windows Latest with MSVC 64bit.
 - Make coverage report and publish it to [Coveralls](https://coveralls.io/github/suikan4github/linux-windows-raspipico). 
 
-## Requirement
+## Tested environment / Target
 ### Ubuntu
-- Ubuntu 24.04
-- VS Code
-- CMake 3.15 or newer
-- g++
-- gcc-arm-eabi-none, libnewlib-arm-none-eabi 
+- Kubuntu 24.10
+- VS Code 1.94.2
+- CMake 
+- g++ 
 
 ### Windows
-- Windows 10 or 11
-- VS Code
-- CMake 3.15 or newer
-- Microsoft Visual C++ compiler 
+- Windows 11
+- VS Code 1.94.2
+- CMake 3.28.3
+- Visual Studio Build Tools 2022 17.11.3
 
 ### WSL2
-- Windows 10 or 11
-- VS Code with [Remote Development extension pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
+- Windows 11 / Ubuntu 24.04
 - CMake 3.15 or newer
-- g++
-- ca-certificates
+- g++ 13.2.0
 
+### Raspberry Pi Pico
+- Windows 11 / Ubuntu 24.04 (WSL)
+- VS Code 1.94.2
+- CMake 3.28.3
+- gcc-arm-eabi-none 13.2.1
 
-## Usage
-### Visual Studio CODE
-Run the followings command inside this directory ( Where README.md exists) to start the VS CODE: 
-```Shell
-code .
-```
-Inside VS CODE, Type Ctrl-Shift-P to show the command pallet. And then, execute following command :
-```
-CMake: Configure
-```
-Now, you can build, run the executable and Ctest from the status bar of the VS CODE.
-
-![](image/statusbar.png)
-### Command line
-Run the followings commands inside this directory ( Where README.md exists) to build the Linux program: 
-```sh
-mkdir build
-cmake -B build -S . -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-cmake --build .
-```
-The executables are stored in the subdirectories: 
-- build/src
-- build/test
-
-To run the Ctest, type :
-```Shell
-ctest --test-dir build
-```
-
-To build the Raspberry Pi executable, run the following commands : 
-
-```sh
-mkdir build
-cmake -B build -S . -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/arm-none-eabi-gcc \
--DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/arm-none-eabi-g++
-cmake --build .
-```
-## Switching the target
-To switch the target, make sure to remove the build directory. 
-
-And then, execute the configuration from the command line. Or, on the VS Code, use CMake Extension to change the compiler. By changing compile, the CMake configure the appropriate target whichever it is Unix, Windows or bare metal. 
-
-## Install
+## Prerequisite  
  
-### Ubuntu
-Run followings on the shell to install the essential tools. 
+On the Ubuntu, run followings on the shell to install the essential tools. 
 ```Shell
 apt-get -y update
 apt-get -y install build-essential cmake ninja-build git 
@@ -94,5 +55,16 @@ apt-get -y install gcc-arm-none-eabi libnewlib-arm-none-eabi
 apt-get -y install doxygen graphviz
 ```
 
+## Usage
+
+- Refer [BAREMETAL.md](docs/BAREMETAL.md) for the Raspberry Pi Pico target. 
+- Refer [LINUX.md](docs/LINUX.md) for the Linux target.
+- Refer [WINDOWS.md](docs/WINDOWS.md) for the Windows target.
+
+As of 2024/Nov, Windows target is unable to configure from VS Code. Our recommendation is WSL, instead of Windows native as a development environment. 
+
+## Known issues
+- As of 2024/Nov, we cannot configure this project on the VS Code for Windows.  
+
 ## License
-This project is shared with the [MIT License](LICENSE). 
+This project is shared under the [MIT License](LICENSE). 
